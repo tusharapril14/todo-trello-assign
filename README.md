@@ -18,9 +18,7 @@ I have only created two lanes because todo api has only two states, Completed an
 I used @angular/cdk library to create my drag and drop functionality
 
 Optimizations and improvements: 
-We could have a loading state here for crud functionality here.
-We could have a seprate ui/modal for our Add Todo Form
-We Could have validation indicator for add todo form.
+We could have a separate ui/modal for our Add Todo Form
 
 More feature:
 We can have user based todo-trelo board for their todo statuses.

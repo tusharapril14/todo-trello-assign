@@ -44,16 +44,6 @@ Features of this application :
 
         API Integration (though the backend does not actually save changes).
 
-        I kept the UI minimal and completed the only feature required.
-
-        Added Validation for input field
-
-        Added Confimation For Delete
-
-        Loading State has Been Added for the CRUD operations
-
-
-
 
 
 NOTES:

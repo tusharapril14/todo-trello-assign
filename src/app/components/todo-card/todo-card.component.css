@@ -1,0 +1,36 @@
+.todo-card {
+  background-color: #f4f4f4;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+.todo-card.completed {
+  background-color: #e0e0e0;
+  text-decoration: line-through;
+}
+.todo-content, .todo-edit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.todo-actions, .edit-actions {
+  display: flex;
+  gap: 8px;
+}
+button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #e0e0e0;
+}
+input {
+  flex-grow: 1;
+  margin-right: 10px;
+  padding: 5px;
+}

@@ -1,0 +1,49 @@
+<div class="todo-board">
+  <!-- Pending Column -->
+  <div 
+    class="todo-lane"
+    cdkDropList
+    [cdkDropListData]="getTodosByStatus(false)"
+    [cdkDropListConnectedTo]="['completedLane']"
+    id="pendingLane"
+    (cdkDropListDropped)="drop($event, false)"
+  >
+    <h2>Pending</h2>
+    <div *ngFor="let todo of getTodosByStatus(false)" cdkDrag>
+      <app-todo-card 
+        [todo]="todo"
+        (edit)="editTodo($event)"
+        (delete)="deleteTodo($event)"
+      ></app-todo-card>
+    </div>
+  </div>
+
+  <!-- Completed Column -->
+  <div 
+    class="todo-lane"
+    cdkDropList
+    [cdkDropListData]="getTodosByStatus(true)"
+    [cdkDropListConnectedTo]="['pendingLane']"
+    id="completedLane"
+    (cdkDropListDropped)="drop($event, true)"
+  >
+    <h2>Completed</h2>
+    <div *ngFor="let todo of getTodosByStatus(true)" cdkDrag>
+      <app-todo-card 
+        [todo]="todo"
+        (edit)="editTodo($event)"
+        (delete)="deleteTodo($event)"
+      ></app-todo-card>
+    </div>
+  </div>
+</div>
+<div class="add-todo-container">
+  <input 
+    type="text" 
+    [(ngModel)]="newTodoText" 
+    placeholder="Enter new todo..."
+    class="todo-input"
+    (keyup.enter)="addTodo()"
+  />
+  <button (click)="addTodo()" class="add-todo-button">Add</button>
+</div>

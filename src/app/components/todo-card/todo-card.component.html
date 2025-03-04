@@ -1,0 +1,21 @@
+<div class="todo-card" [class.completed]="todo.completed">
+  <div *ngIf="!isEditing" class="todo-content">
+    <span class="todo-text">{{ todo.todo }}</span>
+    <div class="todo-actions">
+      <button (click)="startEditing()">Edit</button>
+      <button (click)="onDelete()">Delete</button>
+    </div>
+  </div>
+
+  <div *ngIf="isEditing" class="todo-edit">
+    <input 
+      #editInput
+      [value]="todo.todo" 
+      (keyup.enter)="saveEdit(editInput.value)"
+      (blur)="cancelEditing()"
+    >
+    <div class="edit-actions">
+      <button (click)="cancelEditing()">Cancel</button>
+    </div>
+  </div>
+</div>

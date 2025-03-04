@@ -36,13 +36,18 @@ export class BoardComponent implements OnInit {
     // 
   }
   addTodo() {
-    this.isLoading=true;
     if (!this.newTodoText.trim()) return; 
+    let todos = this.todos.map(item=>item.todo.toLowerCase().trim())
+    if(todos.includes(this.newTodoText.toLowerCase().trim())){
+      alert('Todo already added! Please try with a different title.')
+      return;
+    }
     const newTodo: Todo = {
       todo: this.newTodoText.trim(), //for extra space remove
       completed: false,
       id: Math.floor(Math.random() * 100) + 1
     };
+    this.isLoading=true;
     this.todoService.addTodo(newTodo).subscribe({
       next: () => {
         this.todos.unshift(newTodo); //here i am pushing it in the first place to keep it on the top
@@ -89,14 +94,18 @@ export class BoardComponent implements OnInit {
   }
 
   deleteTodo(todo: Todo) {
-    this.isLoading=true;
-    this.todoService.deleteTodo(todo.id).subscribe((response) => {
-        this.todos = this.todos.filter(t => t.id !== todo.id);
-        this.isLoading=false;
-      },
-      (err) => {
-        this.isLoading=false;
-        console.error('Failed to delete todo', err);
-    });
+    let value = confirm('Are you sure you want to delete?')
+      if(value){
+      this.isLoading=true;
+      this.todoService.deleteTodo(todo.id).subscribe((response) => {
+          this.todos = this.todos.filter(t => t.id !== todo.id);
+          this.isLoading=false;
+        },
+        (err) => {
+          this.isLoading=false;
+          console.error('Failed to delete todo', err);
+      });
+    }
   }
+
 }

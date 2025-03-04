@@ -7,6 +7,9 @@
   min-width: 250px;
   border: 1px solid #ccc;
   padding: 16px;
+  border-radius: 12px;
+  overflow:scroll;
+  max-height: 600px;
 }
 .add-todo-container {
   display: flex;

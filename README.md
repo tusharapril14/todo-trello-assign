@@ -16,7 +16,7 @@ Drag & Drop is implemented using @angular/cdk.
 
 🛠 Setup & Installation
 1️⃣ Clone the repository:
-    git clone https://github.com/your-repo/todo-trello-app.git
+    git clone https://github.com/your-repo/todo-trello-app.git](https://github.com/tusharapril14/todo-trello-assign)
     cd todo-trello-app
 
 2️⃣ Install dependencies:

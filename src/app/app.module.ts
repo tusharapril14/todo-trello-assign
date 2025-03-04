@@ -8,12 +8,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BoardComponent } from './components/board/board.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoCardComponent,
-    BoardComponent
+    BoardComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

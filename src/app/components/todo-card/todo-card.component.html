@@ -1,6 +1,6 @@
 <div class="todo-card" [class.completed]="todo.completed">
   <div *ngIf="!isEditing" class="todo-content">
-    <span class="todo-text">{{ todo.todo }}</span>
+    <span class="todo-text" [class.completed]="todo.completed">{{ todo.todo }}</span>
     <div class="todo-actions">
       <button class="edit-btn" (click)="startEditing()" *ngIf="!todo.completed">Edit</button>
       <button class="delete-btn" (click)="onDelete()">Delete</button>

@@ -6,9 +6,7 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   cursor: pointer;
 }
-.todo-card.completed {
-  background-color: #e0e0e0;
-}
+
 .todo-content, .todo-edit {
   display: flex;
   justify-content: space-between;
@@ -18,7 +16,7 @@
   display: flex;
   gap: 8px;
 }
-.todo-text{
+.todo-text.completed{
   text-decoration: line-through;
 }
 button {

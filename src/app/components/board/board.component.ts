@@ -10,7 +10,8 @@ import { TodoService } from 'src/app/services/todo.service';
 })
 export class BoardComponent implements OnInit {
   todos: Todo[] = [];
-  newTodoText:string=''
+  newTodoText:string='';
+  isLoading:boolean = false;
   constructor(private todoService: TodoService) {}
 
   ngOnInit() {
@@ -18,9 +19,14 @@ export class BoardComponent implements OnInit {
   }
 
   loadTodos() {
+    this.isLoading=true;  // showing loading spinner
     // fetching our todos from the server
     this.todoService.getTodos().subscribe((response) => {
       this.todos = response.todos;
+      this.isLoading=false;
+    },err=>{
+      this.isLoading=false;
+      console.error('Failed to load todos', err);
     });
   }
 
@@ -30,6 +36,7 @@ export class BoardComponent implements OnInit {
     // 
   }
   addTodo() {
+    this.isLoading=true;
     if (!this.newTodoText.trim()) return; 
     const newTodo: Todo = {
       todo: this.newTodoText.trim(), //for extra space remove
@@ -40,13 +47,17 @@ export class BoardComponent implements OnInit {
       next: () => {
         this.todos.unshift(newTodo); //here i am pushing it in the first place to keep it on the top
         this.newTodoText = ''; // clear input 
+        this.isLoading=false;
       },
       error: (err) => {
+        this.isLoading=false;
+
         console.error('Failed to delete todo', err);
       }
     });
   }
   drop(event: CdkDragDrop<Todo[]>, completed: boolean) {
+    
     // I am using angular cdk for drag and drop feature
     // here i am checking if container are not same, just move the item and call the api
     if (event.previousContainer !== event.container) {
@@ -55,10 +66,13 @@ export class BoardComponent implements OnInit {
       if (todo.completed !== completed) {
         transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
         // update locally here 
+        this.isLoading=true;
         this.todoService.updateTodo(todo.id, { completed }).subscribe(()=>{
           this.todos = this.todos.map(t => (t.id === todo.id ? { ...t, completed } : t));
+          this.isLoading=false;
         },
       error=>{
+        this.isLoading=false;
         console.log(error);
       });
       }
@@ -75,10 +89,13 @@ export class BoardComponent implements OnInit {
   }
 
   deleteTodo(todo: Todo) {
+    this.isLoading=true;
     this.todoService.deleteTodo(todo.id).subscribe((response) => {
         this.todos = this.todos.filter(t => t.id !== todo.id);
+        this.isLoading=false;
       },
       (err) => {
+        this.isLoading=false;
         console.error('Failed to delete todo', err);
     });
   }

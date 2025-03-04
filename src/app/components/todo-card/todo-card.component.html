@@ -2,8 +2,8 @@
   <div *ngIf="!isEditing" class="todo-content">
     <span class="todo-text">{{ todo.todo }}</span>
     <div class="todo-actions">
-      <button (click)="startEditing()">Edit</button>
-      <button (click)="onDelete()">Delete</button>
+      <button class="edit-btn" (click)="startEditing()" *ngIf="!todo.completed">Edit</button>
+      <button class="delete-btn" (click)="onDelete()">Delete</button>
     </div>
   </div>
 

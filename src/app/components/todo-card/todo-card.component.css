@@ -8,7 +8,6 @@
 }
 .todo-card.completed {
   background-color: #e0e0e0;
-  text-decoration: line-through;
 }
 .todo-content, .todo-edit {
   display: flex;
@@ -19,6 +18,9 @@
   display: flex;
   gap: 8px;
 }
+.todo-text{
+  text-decoration: line-through;
+}
 button {
   background-color: #f0f0f0;
   border: none;
@@ -26,11 +28,17 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
-button:hover {
-  background-color: #e0e0e0;
-}
+
 input {
   flex-grow: 1;
   margin-right: 10px;
   padding: 5px;
+}
+.delete-btn {
+  background-color: rgb(197, 91, 91);
+  color: white !important;
+}
+.edit-btn{
+  background-color: #007bff;
+  color: white !important;
 }

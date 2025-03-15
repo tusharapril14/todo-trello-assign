@@ -1,0 +1,32 @@
+trigger:
+  - main  # Run the pipeline on main branch changes
+
+pool:
+  vmImage: 'ubuntu-latest'  # Use Linux environment
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.x'  # Set Node.js version
+    displayName: 'Install Node.js'
+
+  - script: npm install
+    displayName: 'Install Dependencies'
+
+  - script: npm run build -- --configuration=production
+    displayName: 'Build Angular App'
+
+  - script: npm run test -- --watch=false --browsers=ChromeHeadless
+    displayName: 'Run Unit Tests'
+
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: 'dist/your-angular-app'  # Adjust with your Angular app folder
+      Contents: '**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Build Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'angular-build'
